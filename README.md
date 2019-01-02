@@ -1,2 +1,2 @@
-# my_golang_exercises
-Getting Started with Go Exercises (University of California, irvine / Coursera)
+# My Golang exercises
+My Goland exercises for the Coursera "Programming with Google Go" program.
