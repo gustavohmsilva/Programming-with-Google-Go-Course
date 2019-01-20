@@ -6,7 +6,6 @@ func main() {
 	cow := Animal{"grass", "walk", "moo"}
 	bird := Animal{"worms", "fly", "peep"}
 	snake := Animal{"mice", "slither", "hsss"}
-	fmt.Println(cow.Eat(), bird.Move(), snake.Speak())
 	for {
 		inputAnimal := ""
 		inputAction := ""
@@ -32,27 +31,27 @@ type Animal struct {
 	noise      string
 }
 
-func (a Animal) Eat() string {
-	return a.food
+func (a Animal) Eat() {
+	fmt.Println(a.food)
 }
 
-func (a Animal) Move() string {
-	return a.locomotion
+func (a Animal) Move() {
+	fmt.Println(a.locomotion)
 }
 
-func (a Animal) Speak() string {
-	return a.noise
+func (a Animal) Speak() {
+	fmt.Println(a.noise)
 }
 
 //Function selectAction to decrease complexity of main function
 func selectAction(input string, animal Animal) {
 	switch input {
 	case "eat":
-		fmt.Println(animal.Eat())
+		animal.Eat()
 	case "move":
-		fmt.Println(animal.Move())
+		animal.Move()
 	case "speak":
-		fmt.Println(animal.Speak())
+		animal.Speak()
 	default:
 		fmt.Println("Action not in the database...")
 	}
