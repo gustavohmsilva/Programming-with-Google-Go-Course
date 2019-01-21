@@ -22,7 +22,7 @@ func BubbleSort(receivedList []int) {
 		needMoreLoops := false
 		for bubbleI := 0; bubbleI < len(receivedList)-1; bubbleI++ {
 			if receivedList[bubbleI] > receivedList[bubbleI+1] {
-				Swap(receivedList[bubbleI : bubbleI+2])
+				Swap(receivedList, bubbleI)
 				needMoreLoops = true
 			}
 			if needMoreLoops {
@@ -34,8 +34,8 @@ func BubbleSort(receivedList []int) {
 }
 
 // Swap exchange values if first value of slice is bigger than second.
-func Swap(sliceToSort []int) {
-	sliceToSort[0], sliceToSort[1] = sliceToSort[1], sliceToSort[0]
+func Swap(sliceToSort []int, i int) {
+	sliceToSort[i], sliceToSort[i+1] = sliceToSort[i+1], sliceToSort[i]
 }
 
 // ReadSliceOfInts receives from the user a slice of values and returns it to the program.
@@ -61,4 +61,3 @@ func ReadSliceOfInts(qtLoops int) []int {
 	}
 	return listagem
 }
-
