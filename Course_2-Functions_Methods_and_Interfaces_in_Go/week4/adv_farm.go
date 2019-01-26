@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	listOfAnimals := make([]Animal, 0)
 	for {
 		//cmd: newanimal or query
 		//arg1: arbritary name
@@ -19,13 +20,37 @@ func main() {
 		switch cmd {
 		case "newanimal":
 			if arg2 == "cow" || arg2 == "bird" || arg2 == "snake" {
-				fmt.Println("valid new animal!")
+				var a Animal
+				switch arg2 {
+				case "cow":
+					cow := Cow{arg1, "grass", "walk", "moo"}
+					a = cow
+				case "bird":
+					bird := Bird{arg1, "worms", "fly", "peep"}
+					a = bird
+				case "snake":
+					snake := Snake{arg1, "mice", "slither", "hss"}
+					a = snake
+				}
+				listOfAnimals = append(listOfAnimals, a)
+				fmt.Println("Sucess!")
 			} else {
 				fmt.Println("Invalid new animal! Accepted animals are:\n\t1. cow\n\t2. bird\n\t3. snake")
 			}
 		case "query":
 			if arg2 == "eat" || arg2 == "move" || arg2 == "speak" {
-				fmt.Println("valid query!")
+				for _, v := range listOfAnimals {
+					if v.Name() == arg1 {
+						switch arg2 {
+						case "eat":
+							v.Eat()
+						case "move":
+							v.Move()
+						case "speak":
+							v.Speak()
+						}
+					}
+				}
 			} else {
 				fmt.Println("Invalid Query! Accepted queries are:\n\t1. eat\n\t2. move\n\t3. speak")
 			}
@@ -36,6 +61,7 @@ func main() {
 }
 
 type Animal interface {
+	Name() string
 	Eat()
 	Move()
 	Speak()
@@ -43,9 +69,14 @@ type Animal interface {
 
 // Cow struct
 type Cow struct {
+	name       string
 	food       string
 	locomotion string
 	noise      string
+}
+
+func (c Cow) Name() string {
+	return c.name
 }
 
 func (c Cow) Eat() {
@@ -62,9 +93,14 @@ func (c Cow) Speak() {
 
 // Bird struct
 type Bird struct {
+	name       string
 	food       string
 	locomotion string
 	noise      string
+}
+
+func (b Bird) Name() string {
+	return b.name
 }
 
 func (b Bird) Eat() {
@@ -81,9 +117,14 @@ func (b Bird) Speak() {
 
 // Snake struct
 type Snake struct {
+	name       string
 	food       string
 	locomotion string
 	noise      string
+}
+
+func (s Snake) Name() string {
+	return s.name
 }
 
 func (s Snake) Eat() {
